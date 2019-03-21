@@ -10,8 +10,9 @@ import os
 
 tf.enable_eager_execution()
 
-train_ds_url = "http://download.tensorflow.org/data/iris_training.csv"
-train_ds_fp = tf.keras.utils.get_file(fname=os.path.basename(train_ds_url), origin=train_ds_url)
+# the following is leftover example code
+#train_ds_url = "http://download.tensorflow.org/data/iris_training.csv"
+#train_ds_fp = tf.keras.utils.get_file(fname=os.path.basename(train_ds_url), origin=train_ds_url)
 train_ds_lo = 'weightData_test.csv'
 
 col_name = ["Id", "Date", "WeightKg", "WeightLb", "Fat", "BMI", "IsManReport", "LogId"]
