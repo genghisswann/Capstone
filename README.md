@@ -1,2 +1,2 @@
-# Capstone Project Spring 2019
+# Capstone yeah
 Biometric based authentication (proof of concept).
