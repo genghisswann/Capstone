@@ -21,7 +21,7 @@ output = datasetTest[:,0]
 # creating model
 model = tf.keras.Sequential()
 model.add(Dense(12, input_dim=4, activation='relu'))
-model.add(Dense(8, activation='relu'))
+model.add(Dense(5, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 
 # compiling model
@@ -35,3 +35,4 @@ print ("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
 
 predictions = model.predict(input)
 rounded = [round(x[0]) for x in predictions]
+print(rounded)
