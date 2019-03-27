@@ -34,3 +34,8 @@ print(features)
 dataset = tf.data.Dataset.from_tensor_slices(tf.random_uniform([100, 2]))
 print(dataset)
 
+#sess = tf.InteractiveSession()
+#print (features.eval())
+
+#with tf.Session as sess:
+#   sess.run([features, lables])
