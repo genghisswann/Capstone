@@ -2,9 +2,7 @@
 #import matplotlib.pyplot as plt
 #import csv
 import xlsxwriter
-import pandas as pd
-from pandas import ExcelWriter
-from pandas import ExcelFile
+import openpyxl
 
 #dataset = pd.read_csv("data.csv")
 #plt. title("Heart Rate Signal")
@@ -12,26 +10,47 @@ from pandas import ExcelFile
 #plt.show()
 
 #Create excel sheet
-workbook = xlsxwriter.Workbook('Credentials.xlsx')
-worksheet = workbook.add_worksheet()
+#workbook = xlsxwriter.Workbook('Credentials.xlsx')
+#worksheet = workbook.add_worksheet()
 
 #Label the top row
-bold = workbook.add_format({'bold': 1})
-worksheet.write('A1', 'First Name', bold)
-worksheet.write('B1', 'Last Name', bold)
-worksheet.write('C1', 'Username', bold)
-worksheet.write('D1', 'Password', bold)
+#bold = workbook.add_format({'bold': 1})
+#worksheet.write('A1', 'First Name', bold)
+#worksheet.write('B1', 'Last Name', bold)
+#worksheet.write('C1', 'Username', bold)
+#worksheet.write('D1', 'Password', bold)
 
 #To label the top row
-row = 1
-col = 0
+#row = 1
+#col = 0
 
-df = pd.read_excel('Credentials.xlsx', sheetname = 'Sheet1')
-print("Column headings:")
-print(df.columns)
 
 #Create Account
-firstName = input("Please enter your first name: ")
+welcome = input("Do you have an account? y/n: ")
+if welcome == "n":
+    while True:
+        username = input("Please enter a username:")
+        password = input("Please enter a password:")
+        ConfirmPassword = input("Please confirm your password:")
+        if password == ConfirmPassword:
+            file = open("Credentials.txt", "a")
+            file.write(username + ":" + password)
+            file.close()
+            welcome = "y"
+            break
+        print("Passwords do NOT match!")
+
+
+#workbook = openpyxl.load_workbook('Credentials.xlsx')
+#worksheet = workbook.active
+
+#i = 0
+#cell_val = ''
+
+#while cell_val != '':
+  #  cell_val = worksheet['E' + i].value
+ #   i += 1
+#workbook.save('Credentials.xlsx')
 
 #lastName = input("Please enter your last name: ")
 
@@ -39,38 +58,34 @@ firstName = input("Please enter your first name: ")
 
 #password = input("Please create password")
 
-workbook.close()
+#workbook.close()
 
 #Login
+if welcome == "y":
+    while True:
+        use = input("Username:")
+        pwd = input("Password:")
+        file = open("Credentials.txt", "r")
+        data = file.readline()
+        file.close()
+        if data == use + ":" + pwd:
+            print("Welcome")
+            break
+        print("Incorrect username or password.")
+
+
 #username = input("Please enter your username: ")
 #password = input("Please enter your password: ")
 #print("Success")
-
-
-
-
-
-
-
-
-
-
-
-
-#with open('data.csv') as csvDataFile:
- #   csvReader = list(csv.reader(csvDataFile))
-  #  df.sort_values([col1, col2])
-   # for row in csvReader:
-    #  print(df.sort_values)
-
-
-
 
 #create excel database to store username and password
 #create login where it will check to make sure the username is not the same as anyone else
 #When logging in, look at heart rate file
 #if certain heart rate matches username then accept
 #if not then deny
+
+
+
 
 
 
