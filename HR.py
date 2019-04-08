@@ -30,14 +30,20 @@ welcome = input("Do you have an account? y/n: ")
 if welcome == "n":
     while True:
         username = input("Please enter a username:")
+        #file = open("Credentials.txt", "r")
+        #if username in file():
+         #   print("Already exists")
+                #username = input("Please enter a different username: ")
+    #else:
         password = input("Please enter a password:")
         ConfirmPassword = input("Please confirm your password:")
         if password == ConfirmPassword:
-            file = open("Credentials.txt", "a")
-            file.write(username + ":" + password)
-            file.close()
-            welcome = "y"
-            break
+            with open("Credentials.txt", "a") as file:
+                file.write(username + ":" + password)
+                file.write("\n")
+                file.close()
+                #welcome = "y"
+                break
         print("Passwords do NOT match!")
 
 
@@ -65,13 +71,33 @@ if welcome == "y":
     while True:
         use = input("Username:")
         pwd = input("Password:")
-        file = open("Credentials.txt", "r")
-        data = file.readline()
-        file.close()
-        if data == use + ":" + pwd:
-            print("Welcome")
-            break
-        print("Incorrect username or password.")
+        found_username = False
+        with open("Credentials.txt", "r") as credentials_file:
+            for line in credentials_file:
+                username_login, password_login = line.strip().split(':')
+            
+                if use == username_login:
+                    found_username = True
+                if use != username_login:
+                    found_username = False
+                    print("wrong")
+                break
+                if pwd == password_login:
+                    print("welcome")
+                else:
+                    print("Fail")
+                break
+        #if not found_username:
+            #print("invalid")
+              #  data = file.readline()
+               # file.close()
+                #print("Welcome")
+                #break
+        #file = open("Credentials.txt", "r")
+        #data = file.readline()
+        #file.close()
+        #print("Welcome")
+        #print("Incorrect username or password.")
 
 
 #username = input("Please enter your username: ")
@@ -83,6 +109,14 @@ if welcome == "y":
 #When logging in, look at heart rate file
 #if certain heart rate matches username then accept
 #if not then deny
+
+
+
+
+
+
+
+
 
 
 
