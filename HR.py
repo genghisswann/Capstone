@@ -1,4 +1,4 @@
-#import pandas as pd
+ #import pandas as pd
 #import matplotlib.pyplot as plt
 #import csv
 import xlsxwriter
@@ -30,11 +30,16 @@ welcome = input("Do you have an account? y/n: ")
 if welcome == "n":
     while True:
         username = input("Please enter a username:")
-        #file = open("Credentials.txt", "r")
-        #if username in file():
-         #   print("Already exists")
-                #username = input("Please enter a different username: ")
-    #else:
+        new_username = False
+        with open("Credentials.txt", "r") as file:
+            for line in file:
+                username_create, password_create = line.strip().split(':')
+                if username == username_create:
+                    found_username = True
+                    print("Already exists ")
+                    username = input("Please enter a different username")
+                    break
+
         password = input("Please enter a password:")
         ConfirmPassword = input("Please confirm your password:")
         if password == ConfirmPassword:
@@ -42,7 +47,7 @@ if welcome == "n":
                 file.write(username + ":" + password)
                 file.write("\n")
                 file.close()
-                #welcome = "y"
+                welcome = "y"
                 break
         print("Passwords do NOT match!")
 
@@ -67,37 +72,35 @@ if welcome == "n":
 #workbook.close()
 
 #Login
+count = 0
 if welcome == "y":
     while True:
-        use = input("Username:")
-        pwd = input("Password:")
-        found_username = False
-        with open("Credentials.txt", "r") as credentials_file:
-            for line in credentials_file:
-                username_login, password_login = line.strip().split(':')
-            
-                if use == username_login:
-                    found_username = True
-                if use != username_login:
-                    found_username = False
-                    print("wrong")
-                break
-                if pwd == password_login:
-                    print("welcome")
-                else:
-                    print("Fail")
-                break
-        #if not found_username:
-            #print("invalid")
-              #  data = file.readline()
-               # file.close()
-                #print("Welcome")
-                #break
-        #file = open("Credentials.txt", "r")
-        #data = file.readline()
-        #file.close()
-        #print("Welcome")
-        #print("Incorrect username or password.")
+        while count < 3:
+            use = input("Username:")
+            pwd = input("Password:")
+            found_username = False
+            with open("Credentials.txt", "r") as credentials_file:
+                for line in credentials_file:
+                    username_login, password_login = line.strip().split(':')
+
+                    if use == username_login:
+                        found_username = True
+                        if pwd == password_login:
+                            print("welcome you are now logged in ")
+                            break
+                        else:
+                            print("Password is incorrect!")
+                            count += 1
+                            if count == 3:
+                                print("Attempts exceeded")
+                        break
+            if not found_username:
+                print("Username and or password do not exist!")
+                count +=1
+                if count == 3:
+                    print("Attempts exceeded")
+        break
+
 
 
 #username = input("Please enter your username: ")
@@ -109,14 +112,6 @@ if welcome == "y":
 #When logging in, look at heart rate file
 #if certain heart rate matches username then accept
 #if not then deny
-
-
-
-
-
-
-
-
 
 
 
