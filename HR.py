@@ -1,4 +1,4 @@
- #import pandas as pd
+#import pandas as pd
 #import matplotlib.pyplot as plt
 #import csv
 import xlsxwriter
@@ -40,16 +40,22 @@ if welcome == "n":
                     username = input("Please enter a different username")
                     break
 
-        password = input("Please enter a password:")
+        password = input("Please enter a password which must be at least 8 characters and a max of 15 characters:")
         ConfirmPassword = input("Please confirm your password:")
-        if password == ConfirmPassword:
+        if len(password) > 15:
+            print("password is too long")
+        elif len(password) < 8:
+            print("password is too short")
+        elif len(password) >= 8 and len(password) <= 15:
+            #password == ConfirmPassword
             with open("Credentials.txt", "a") as file:
                 file.write(username + ":" + password)
                 file.write("\n")
                 file.close()
                 welcome = "y"
                 break
-        print("Passwords do NOT match!")
+        if password != ConfirmPassword:
+            print("Passwords do NOT match!")
 
 
 #workbook = openpyxl.load_workbook('Credentials.xlsx')
@@ -96,7 +102,7 @@ if welcome == "y":
                         break
             if not found_username:
                 print("Username and or password do not exist!")
-                count +=1
+                count += 1
                 if count == 3:
                     print("Attempts exceeded")
         break
