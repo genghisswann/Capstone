@@ -40,14 +40,13 @@ if welcome == "n":
                     username = input("Please enter a different username")
                     break
 
-        password = input("Please enter a password which must be at least 8 characters and a max of 15 characters:")
-        ConfirmPassword = input("Please confirm your password:")
+        password = input("Please enter a password which must be a min 8 characters and a max of 15 characters:")
+        ConfirmPassword = input("Please confirm your password: ")
         if len(password) > 15:
             print("password is too long")
         elif len(password) < 8:
             print("password is too short")
         elif len(password) >= 8 and len(password) <= 15:
-            #password == ConfirmPassword
             with open("Credentials.txt", "a") as file:
                 file.write(username + ":" + password)
                 file.write("\n")
@@ -82,8 +81,9 @@ count = 0
 if welcome == "y":
     while True:
         while count < 3:
-            use = input("Username:")
-            pwd = input("Password:")
+            print("\nPlease login ")
+            use = input("Username: ")
+            pwd = input("Password: ")
             found_username = False
             with open("Credentials.txt", "r") as credentials_file:
                 for line in credentials_file:
@@ -100,11 +100,15 @@ if welcome == "y":
                             if count == 3:
                                 print("Attempts exceeded")
                         break
-            if not found_username:
-                print("Username and or password do not exist!")
-                count += 1
-                if count == 3:
-                    print("Attempts exceeded")
+
+
+                if not found_username:
+                    print("Username and or password do not exist!")
+                    count += 1
+                    if count == 3:
+                        print("Attempts exceeded")
+                else:
+                    break
         break
 
 
@@ -118,12 +122,3 @@ if welcome == "y":
 #When logging in, look at heart rate file
 #if certain heart rate matches username then accept
 #if not then deny
-
-
-
-
-
-
-
-
-
