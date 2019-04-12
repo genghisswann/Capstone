@@ -44,7 +44,7 @@ def authenticate(use, pwd):
             username_login, password_login = line.strip().split(':')
             if username_login == use and password_login == pwd:
                 return True
-            elif username_login == use and password_login != pwd and username_login != use and password_login == pwd:
+            elif username_login == use and password_login != pwd:
                 raise Exception("Password is incorrect!")
             else:
                 continue
