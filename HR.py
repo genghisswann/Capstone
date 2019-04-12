@@ -3,19 +3,19 @@ welcome = input("Do you have an account? y/n: ")
 if welcome == "n":
     while True:
         username = input("Please enter a username:")
-        new_username = False
+        found_username = False
         with open("Credentials.txt", "r") as file:
             for line in file:
-                if not line:
-                    continue
-                else:
-                    for line in file:
-                        username_create, password_create = line.strip().split(':')
-                        if username == username_create:
-                            found_username = True
-                            print("Already exists ")
-                            username = input("Please enter a different username")
-                            break
+                username_create, password_create = line.strip().split(':')
+                if username == username_create:
+                    found_username = True
+                    print("Already exists ")
+                    username = input("Please enter a different username")
+                    break
+            else:
+                for line in file:
+                    if not line:
+                        break
 
         password = input("Please enter a password which must be a min 8 characters and a max of 15 characters:")
         ConfirmPassword = input("Please confirm your password: ")
@@ -28,10 +28,14 @@ if welcome == "n":
                 file.write(username + ":" + password)
                 file.write("\n")
                 file.close()
+                #welcome = "y"
+                #break
+            if password != ConfirmPassword:
+                print("Passwords do NOT match!")
+            else:
+                welcome = input("If you would like to login, press y to login")
                 welcome = "y"
                 break
-        if password != ConfirmPassword:
-            print("Passwords do NOT match!")
 
 #Login
 def authenticate(use, pwd):
@@ -40,13 +44,14 @@ def authenticate(use, pwd):
             username_login, password_login = line.strip().split(':')
             if username_login == use and password_login == pwd:
                 return True
-            elif username_login == use and password_login != pwd:
+            elif username_login == use and password_login != pwd and username_login != use and password_login == pwd:
                 raise Exception("Password is incorrect!")
             else:
                 continue
     raise Exception("Username and/or password do not exist!")
 
 if welcome == "y":
+    print("\nPlease login")
     is_authenticated = False
     for r in range(3):
         use = input("Username: ")
