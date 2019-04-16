@@ -28,8 +28,6 @@ if welcome == "n":
                 file.write(username + ":" + password)
                 file.write("\n")
                 file.close()
-                #welcome = "y"
-                #break
             if password != ConfirmPassword:
                 print("Passwords do NOT match!")
             else:
