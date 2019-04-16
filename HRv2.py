@@ -67,8 +67,6 @@ def login():
                         file.write(username + ":" + password)
                         file.write("\n")
                         file.close()
-                        # welcome = "y"
-                        # break
                         return False
 
 
