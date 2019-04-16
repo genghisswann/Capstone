@@ -55,7 +55,7 @@ if welcome == "y":
         use = input("Username: ")
         pwd = input("Password: ")
 
-        try: #Checking each time to see if username and password are correct or incorrect 
+        try: #Exception handling for if there is an incorrect username or password 
             authenticate(use, pwd)
             is_authenticated = True
             break
