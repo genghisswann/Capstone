@@ -1,29 +1,3 @@
-#import pandas as pd
-#import matplotlib.pyplot as plt
-#import csv
-import xlsxwriter
-import openpyxl
-
-#dataset = pd.read_csv("data.csv")
-#plt. title("Heart Rate Signal")
-#plt.plot(dataset.hart)
-#plt.show()
-
-#Create excel sheet
-#workbook = xlsxwriter.Workbook('Credentials.xlsx')
-#worksheet = workbook.add_worksheet()
-
-#Label the top row
-#bold = workbook.add_format({'bold': 1})
-#worksheet.write('A1', 'First Name', bold)
-#worksheet.write('B1', 'Last Name', bold)
-#worksheet.write('C1', 'Username', bold)
-#worksheet.write('D1', 'Password', bold)
-
-#To label the top row
-#row = 1
-#col = 0
-
 ################################### CODE START ###################################
 
 #RETURNS A BOOL VALUE TO SIGNIFY IF USER IS CURRENTLY LOGGED IN OR NOT
